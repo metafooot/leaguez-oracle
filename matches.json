@@ -9,5 +9,16 @@
     "homeScore": null,
     "awayScore": null,
     "result": null
+  },
+  {
+    "id": "mci-liv-2026-11-22",
+    "homeTeam": "Man City",
+    "awayTeam": "Liverpool",
+    "kickoff": "2026-11-22T16:30:00Z",
+    "venue": "Etihad Stadium",
+    "status": "SCHEDULED",
+    "homeScore": null,
+    "awayScore": null,
+    "result": null
   }
 ]
