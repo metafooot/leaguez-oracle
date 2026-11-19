@@ -1,0 +1,21 @@
+name: Update Matches from ESPN
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install requests
+      - run: python fetch_espn.py
+      - run: |
+          git config user.name "leaguezz-oracle"
+          git config user.email "oracle@leaguezz.app"
+          git add matches.json
+          git diff --cached --quiet || git commit -m "Update matches from 【entity-ESPN¦canonical_name=ESPN】"
+          git push
