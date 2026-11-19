@@ -1,9 +1,0 @@
-{
-  "name": "leaguez-oracle",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "@libsql/client": "latest",
-    "tronweb": "latest"
-  }
-}
