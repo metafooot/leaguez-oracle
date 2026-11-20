@@ -1,9 +1,9 @@
 {
-  "updatedAt": 1795187581,
+  "updatedAt": 1795189682,
   "appId": 776578156,
-  "boxes": 11,
-  "values": 11,
-  "parsed": 11,
+  "boxes": 12,
+  "values": 12,
+  "parsed": 12,
   "bets": [
     {
       "betId": 0,
@@ -136,6 +136,18 @@
       "status": 0,
       "statusLabel": "open",
       "createdAt": 1795187193
+    },
+    {
+      "betId": 11,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 6.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795189362
     }
   ]
 }
