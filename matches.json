@@ -317,5 +317,16 @@
     "homeScore": 0,
     "awayScore": 0,
     "result": null
+  },
+  {
+    "id": "401878749",
+    "homeTeam": "Tottenham Hotspur",
+    "awayTeam": "Fulham",
+    "kickoff": "2026-12-03T20:00Z",
+    "venue": "Tottenham Hotspur Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
   }
 ]
