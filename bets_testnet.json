@@ -1,8 +1,129 @@
 {
-  "updatedAt": 1795184334,
+  "updatedAt": 1795186342,
   "appId": 776578156,
   "boxes": 10,
-  "values": 0,
-  "parsed": 0,
-  "bets": []
+  "values": 10,
+  "parsed": 10,
+  "bets": [
+    {
+      "betId": 0,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 2.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795167837
+    },
+    {
+      "betId": 1,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 2.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795168695
+    },
+    {
+      "betId": 2,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795170033
+    },
+    {
+      "betId": 3,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795171199
+    },
+    {
+      "betId": 4,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 2.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795172643
+    },
+    {
+      "betId": 5,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795173256
+    },
+    {
+      "betId": 6,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795175098
+    },
+    {
+      "betId": 7,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795175616
+    },
+    {
+      "betId": 8,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795175678
+    },
+    {
+      "betId": 9,
+      "creatorAddress": "6WK3X6RWA6MJOTIXXT7NVHLHR2Z5WY7IVXLVT7MZFJJJ762P3GMFIHDY24",
+      "creatorPick": 0,
+      "creatorPickLabel": "HOME",
+      "stake": 1.0,
+      "joinerAddress": "",
+      "joinerPick": 255,
+      "status": 0,
+      "statusLabel": "open",
+      "createdAt": 1795177121
+    }
+  ]
 }
