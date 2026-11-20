@@ -1,0 +1,26 @@
+name: Fetch Bets
+on:
+  schedule:
+    - cron: '*/2 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install requests
+      - name: Fetch bets from chain
+        run: python fetch_bets.py
+      - name: Commit bets file
+        run: |
+          git config user.name "leaguezz-bot"
+          git config user.email "bot@leaguezz.app"
+          git add bets_testnet.json
+          git diff --cached --quiet || git commit -m "Update bets_testnet.json"
+          git push
