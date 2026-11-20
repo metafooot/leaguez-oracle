@@ -2,8 +2,7 @@ import base64
 import hashlib
 import json
 import time
-import urllib.parse
-import urllib.request
+import requests
 
 APP_ID = 776578156
 INDEXER_BASES = [
@@ -21,27 +20,23 @@ def encode_address(pubkey: bytes) -> str:
     addr_bytes = pubkey + checksum
     return base64.b32encode(addr_bytes).decode().rstrip("=")
 
-def http_get(url: str, timeout=8):
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        if r.status != 200:
-            return None
-        return r.read().decode()
-
 def list_box_names():
     for base in ALL_BASES:
         try:
             is_indexer = "idx" in base
-            param = "limit=1000" if is_indexer else "max=1000"
-            url = f"{base}/v2/applications/{APP_ID}/boxes?{param}"
-            data = http_get(url)
-            if not data:
+            params = {"limit": 1000} if is_indexer else {"max": 1000}
+            r = requests.get(f"{base}/v2/applications/{APP_ID}/boxes", params=params, timeout=10)
+            print(f"List boxes from {base} -> {r.status_code}")
+            if r.status_code != 200:
+                print(f"  body: {r.text[:300]}")
                 continue
-            obj = json.loads(data)
+            obj = r.json()
             boxes = obj.get("boxes", [])
             names = []
+            raw_names = []
             for b in boxes:
                 n = b.get("name", "")
+                raw_names.append(n)
                 if n:
                     try:
                         names.append(base64.b64decode(n))
@@ -51,8 +46,11 @@ def list_box_names():
                         except Exception:
                             pass
             if names:
+                print(f"First raw box name: {raw_names[0]}")
+                print(f"First decoded hex: {names[0].hex()} len={len(names[0])}")
                 return names
-        except Exception:
+        except Exception as e:
+            print(f"List error {base}: {e}")
             continue
     return []
 
@@ -62,16 +60,13 @@ def fetch_box_value(box_name_bytes: bytes):
     b64_url = base64.urlsafe_b64encode(box_name_bytes).decode()
     b64_url_nopad = b64_url.rstrip("=")
     cands = [b64_std, b64_std_nopad, b64_url, b64_url_nopad]
+    # Use requests params= so it URL-encodes correctly, this is the fix
     for base in ALL_BASES:
         for cand in cands:
-            for use_encode in [True, False]:
-                try:
-                    enc = urllib.parse.quote(cand, safe="") if use_encode else cand
-                    url = f"{base}/v2/applications/{APP_ID}/box?name={enc}"
-                    data = http_get(url, timeout=5)
-                    if not data:
-                        continue
-                    obj = json.loads(data)
+            try:
+                r = requests.get(f"{base}/v2/applications/{APP_ID}/box", params={"name": cand}, timeout=8)
+                if r.status_code == 200:
+                    obj = r.json()
                     val_b64 = obj.get("value", "")
                     if not val_b64:
                         continue
@@ -79,8 +74,12 @@ def fetch_box_value(box_name_bytes: bytes):
                         return base64.b64decode(val_b64)
                     except Exception:
                         return base64.urlsafe_b64decode(val_b64 + "=" * (-len(val_b64) % 4))
-                except Exception:
-                    continue
+                else:
+                    # Only print first box failure to avoid spam
+                    if box_name_bytes == b"\x00" * 8 or True:
+                        pass
+            except Exception:
+                continue
     return None
 
 def parse_bet_id(name_bytes: bytes) -> int:
@@ -189,14 +188,19 @@ def main():
     boxes = len(names)
     values = 0
     bets = []
-    for name_bytes in names:
+    for idx, name_bytes in enumerate(names):
         bet_id = parse_bet_id(name_bytes)
         data = fetch_box_value(name_bytes)
         if data is None:
+            if idx == 0:
+                print("First box value FAILED - check Actions log for list debug above")
             continue
         values += 1
+        if idx == 0:
+            print(f"First box value OK len={len(data)} hex start={data[:32].hex()}")
         parsed = parse_bet(bet_id, data)
         if parsed is None:
+            print(f"Bet {bet_id} parse failed len={len(data)}")
             continue
         if not parsed["creatorAddress"]:
             continue
