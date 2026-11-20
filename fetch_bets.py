@@ -2,84 +2,88 @@ import base64
 import hashlib
 import json
 import time
-import requests
+from algosdk.v2client import algod, indexer
 
 APP_ID = 776578156
-INDEXER_BASES = [
-    "https://testnet-idx.algonode.cloud",
-    "https://testnet-idx.nodely.io",
-]
-ALGOD_BASES = [
+
+# Official clients, they handle box name encoding for us
+ALGOD_URLS = [
     "https://testnet-api.algonode.cloud",
     "https://testnet-api.nodely.io",
 ]
-ALL_BASES = INDEXER_BASES + ALGOD_BASES
+INDEXER_URLS = [
+    "https://testnet-idx.algonode.cloud",
+    "https://testnet-idx.nodely.io",
+]
 
 def encode_address(pubkey: bytes) -> str:
     checksum = hashlib.new("sha512_256", pubkey).digest()[-4:]
-    addr_bytes = pubkey + checksum
-    return base64.b32encode(addr_bytes).decode().rstrip("=")
+    return base64.b32encode(pubkey + checksum).decode().rstrip("=")
 
-def list_box_names():
-    for base in ALL_BASES:
+def get_clients():
+    algod_clients = [algod.AlgodClient("", u) for u in ALGOD_URLS]
+    indexer_clients = [indexer.IndexerClient("", u) for u in INDEXER_URLS]
+    return algod_clients, indexer_clients
+
+def list_box_names(indexer_clients):
+    for c in indexer_clients:
         try:
-            is_indexer = "idx" in base
-            params = {"limit": 1000} if is_indexer else {"max": 1000}
-            r = requests.get(f"{base}/v2/applications/{APP_ID}/boxes", params=params, timeout=10)
-            print(f"List boxes from {base} -> {r.status_code}")
-            if r.status_code != 200:
-                print(f"  body: {r.text[:300]}")
-                continue
-            obj = r.json()
-            boxes = obj.get("boxes", [])
+            resp = c.application_boxes(APP_ID)
+            boxes = resp.get("boxes", [])
+            print(f"Indexer boxes found: {len(boxes)}")
             names = []
-            raw_names = []
+            raw = []
             for b in boxes:
                 n = b.get("name", "")
-                raw_names.append(n)
+                raw.append(n)
                 if n:
                     try:
                         names.append(base64.b64decode(n))
                     except Exception:
-                        try:
-                            names.append(base64.urlsafe_b64decode(n + "=" * (-len(n) % 4)))
-                        except Exception:
-                            pass
+                        names.append(base64.urlsafe_b64decode(n + "=" * (-len(n) % 4)))
             if names:
-                print(f"First raw box name: {raw_names[0]}")
+                print(f"First raw name: {raw[0]}")
                 print(f"First decoded hex: {names[0].hex()} len={len(names[0])}")
                 return names
         except Exception as e:
-            print(f"List error {base}: {e}")
+            print(f"List error: {e}")
             continue
     return []
 
-def fetch_box_value(box_name_bytes: bytes):
-    b64_std = base64.b64encode(box_name_bytes).decode()
-    b64_std_nopad = b64_std.rstrip("=")
-    b64_url = base64.urlsafe_b64encode(box_name_bytes).decode()
-    b64_url_nopad = b64_url.rstrip("=")
-    cands = [b64_std, b64_std_nopad, b64_url, b64_url_nopad]
-    # Use requests params= so it URL-encodes correctly, this is the fix
-    for base in ALL_BASES:
-        for cand in cands:
-            try:
-                r = requests.get(f"{base}/v2/applications/{APP_ID}/box", params={"name": cand}, timeout=8)
-                if r.status_code == 200:
-                    obj = r.json()
-                    val_b64 = obj.get("value", "")
-                    if not val_b64:
-                        continue
-                    try:
-                        return base64.b64decode(val_b64)
-                    except Exception:
-                        return base64.urlsafe_b64decode(val_b64 + "=" * (-len(val_b64) % 4))
-                else:
-                    # Only print first box failure to avoid spam
-                    if box_name_bytes == b"\x00" * 8 or True:
-                        pass
-            except Exception:
-                continue
+def fetch_box_value(algod_clients, indexer_clients, box_name_bytes: bytes):
+    # Try Algod first, then Indexer, both via SDK
+    for c in algod_clients:
+        try:
+            resp = c.application_box_by_name(APP_ID, box_name_bytes)
+            # SDK returns dict with value as base64 string or bytes
+            val = resp.get("value", "")
+            if isinstance(val, str) and val:
+                try:
+                    return base64.b64decode(val)
+                except Exception:
+                    return base64.urlsafe_b64decode(val + "=" * (-len(val) % 4))
+            if isinstance(val, bytes) and val:
+                return val
+            # Some SDK versions return {"name":..., "value":...} nested
+            if isinstance(resp, dict) and "value" not in resp:
+                print(f"Algod resp keys: {list(resp.keys())} raw: {str(resp)[:300]}")
+        except Exception as e:
+            print(f"Algod box error for {box_name_bytes.hex()}: {e}")
+            continue
+    for c in indexer_clients:
+        try:
+            resp = c.application_box_by_name(APP_ID, box_name_bytes)
+            val = resp.get("value", "")
+            if isinstance(val, str) and val:
+                try:
+                    return base64.b64decode(val)
+                except Exception:
+                    return base64.urlsafe_b64decode(val + "=" * (-len(val) % 4))
+            if isinstance(val, bytes) and val:
+                return val
+        except Exception as e:
+            print(f"Indexer box error for {box_name_bytes.hex()}: {e}")
+            continue
     return None
 
 def parse_bet_id(name_bytes: bytes) -> int:
@@ -107,8 +111,6 @@ def parse_bet(bet_id: int, data: bytes):
     try:
         creator = encode_address(data[0:32])
     except Exception:
-        return None
-    if not creator:
         return None
     b = {
         "betId": bet_id,
@@ -179,21 +181,21 @@ def parse_bet(bet_id: int, data: bytes):
         b["status"] = 1 if b["joinerAddress"] else 0
     if b["stake"] < 1 or b["stake"] > 1000:
         return None
-    status_labels = ["open", "matched", "settled", "refunded"]
-    b["statusLabel"] = status_labels[b["status"]]
+    b["statusLabel"] = ["open", "matched", "settled", "refunded"][b["status"]]
     return b
 
 def main():
-    names = list_box_names()
+    algod_clients, indexer_clients = get_clients()
+    names = list_box_names(indexer_clients)
     boxes = len(names)
     values = 0
     bets = []
     for idx, name_bytes in enumerate(names):
         bet_id = parse_bet_id(name_bytes)
-        data = fetch_box_value(name_bytes)
+        data = fetch_box_value(algod_clients, indexer_clients, name_bytes)
         if data is None:
             if idx == 0:
-                print("First box value FAILED - check Actions log for list debug above")
+                print("First box value STILL FAILED, see errors above")
             continue
         values += 1
         if idx == 0:
@@ -201,8 +203,6 @@ def main():
         parsed = parse_bet(bet_id, data)
         if parsed is None:
             print(f"Bet {bet_id} parse failed len={len(data)}")
-            continue
-        if not parsed["creatorAddress"]:
             continue
         if parsed["stake"] < 1 or parsed["stake"] > 1000:
             continue
