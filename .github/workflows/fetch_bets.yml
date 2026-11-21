@@ -1,26 +1,27 @@
-name: Fetch Bets
+name: Update Matches from ESPN
+
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
-  fetch:
+  update-matches:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install deps
-        run: pip install py-algorand-sdk requests
-      - name: Fetch bets from chain
-        run: python fetch_bets.py
-      - name: Commit bets file
+      - name: Fetch matches from 【entity-ESPN¦canonical_name=ESPN】
+        run: python fetch_matches.py
+      - name: Commit if changed
         run: |
-          git config user.name "leaguezz-bot"
-          git config user.email "bot@leaguezz.app"
-          git add bets_testnet.json
-          git diff --cached --quiet || git commit -m "Update bets_testnet.json"
+          git config user.name "leaguez-bot"
+          git config user.email "bot@leaguez.app"
+          git add matches.json
+          git diff --cached --quiet || git commit -m "Auto update matches from ESPN"
           git push
