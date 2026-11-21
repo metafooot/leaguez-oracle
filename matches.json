@@ -1,62 +1,332 @@
-{
-  "matches": [
-    {
-      "homeTeam": "Manchester City",
-      "awayTeam": "Fulham",
-      "kickoff": "2026-11-21 12:30",
-      "venue": "Etihad Stadium",
-      "status": "FINISHED",
-      "score": "1-1"
-    },
-    {
-      "homeTeam": "AFC Bournemouth",
-      "awayTeam": "Nottingham Forest",
-      "kickoff": "2026-11-21 15:00",
-      "venue": "Vitality Stadium",
-      "status": "LIVE",
-      "score": "2-0"
-    },
-    {
-      "homeTeam": "Aston Villa",
-      "awayTeam": "Sunderland",
-      "kickoff": "2026-11-21 15:00",
-      "venue": "Villa Park",
-      "status": "LIVE",
-      "score": "0-0"
-    },
-    {
-      "homeTeam": "Chelsea",
-      "awayTeam": "Leeds United",
-      "kickoff": "2026-11-21 15:00",
-      "venue": "Stamford Bridge",
-      "status": "LIVE",
-      "score": "1-3"
-    },
-    {
-      "homeTeam": "Coventry City",
-      "awayTeam": "Crystal Palace",
-      "kickoff": "2026-11-21 15:00",
-      "venue": "Coventry Building Society Arena",
-      "status": "LIVE",
-      "score": "2-2"
-    },
-    {
-      "homeTeam": "Tottenham Hotspur",
-      "awayTeam": "Ipswich Town",
-      "kickoff": "2026-11-21 15:00",
-      "venue": "Tottenham Hotspur Stadium",
-      "status": "LIVE",
-      "score": "2-0"
-    },
-    {
-      "homeTeam": "Newcastle United",
-      "awayTeam": "Arsenal",
-      "kickoff": "2026-11-21 17:30",
-      "venue": "St. James' Park",
-      "status": "SCHEDULED",
-      "score": "0-0"
-    }
-  ],
-  "updated": "2026-11-21T16:24:49.892135Z",
-  "source": "ESPN eng.1"
-}
+[
+  {
+    "id": "401879233",
+    "homeTeam": "Manchester City",
+    "awayTeam": "Fulham",
+    "kickoff": "2026-11-21T12:30Z",
+    "venue": "Etihad Stadium",
+    "status": "FINISHED",
+    "homeScore": 1,
+    "awayScore": 1,
+    "result": "DRAW"
+  },
+  {
+    "id": "401879238",
+    "homeTeam": "AFC Bournemouth",
+    "awayTeam": "Nottingham Forest",
+    "kickoff": "2026-11-21T15:00Z",
+    "venue": "Vitality Stadium",
+    "status": "FINISHED",
+    "homeScore": 2,
+    "awayScore": 0,
+    "result": "HOME"
+  },
+  {
+    "id": "401878756",
+    "homeTeam": "Aston Villa",
+    "awayTeam": "Sunderland",
+    "kickoff": "2026-11-21T15:00Z",
+    "venue": "Villa Park",
+    "status": "FINISHED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": "DRAW"
+  },
+  {
+    "id": "401879236",
+    "homeTeam": "Chelsea",
+    "awayTeam": "Leeds United",
+    "kickoff": "2026-11-21T15:00Z",
+    "venue": "Stamford Bridge",
+    "status": "FINISHED",
+    "homeScore": 1,
+    "awayScore": 4,
+    "result": "AWAY"
+  },
+  {
+    "id": "401879235",
+    "homeTeam": "Coventry City",
+    "awayTeam": "Crystal Palace",
+    "kickoff": "2026-11-21T15:00Z",
+    "venue": "Coventry Building Society Arena",
+    "status": "FINISHED",
+    "homeScore": 3,
+    "awayScore": 2,
+    "result": "HOME"
+  },
+  {
+    "id": "401878754",
+    "homeTeam": "Tottenham Hotspur",
+    "awayTeam": "Ipswich Town",
+    "kickoff": "2026-11-21T15:00Z",
+    "venue": "Tottenham Hotspur Stadium",
+    "status": "FINISHED",
+    "homeScore": 2,
+    "awayScore": 0,
+    "result": "HOME"
+  },
+  {
+    "id": "401879232",
+    "homeTeam": "Newcastle United",
+    "awayTeam": "Arsenal",
+    "kickoff": "2026-11-21T17:30Z",
+    "venue": "St. James' Park",
+    "status": "FINISHED",
+    "homeScore": 2,
+    "awayScore": 2,
+    "result": "DRAW"
+  },
+  {
+    "id": "401879234",
+    "homeTeam": "Hull City",
+    "awayTeam": "Brighton & Hove Albion",
+    "kickoff": "2026-11-22T14:00Z",
+    "venue": "The MKM Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878755",
+    "homeTeam": "Liverpool",
+    "awayTeam": "Manchester United",
+    "kickoff": "2026-11-22T16:30Z",
+    "venue": "Anfield",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879237",
+    "homeTeam": "Brentford",
+    "awayTeam": "Everton",
+    "kickoff": "2026-11-23T20:00Z",
+    "venue": "Gtech Community Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879225",
+    "homeTeam": "Nottingham Forest",
+    "awayTeam": "Chelsea",
+    "kickoff": "2026-11-27T20:00Z",
+    "venue": "The City Ground",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879227",
+    "homeTeam": "Leeds United",
+    "awayTeam": "Coventry City",
+    "kickoff": "2026-11-28T15:00Z",
+    "venue": "Elland Road",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879226",
+    "homeTeam": "Manchester United",
+    "awayTeam": "Brentford",
+    "kickoff": "2026-11-28T15:00Z",
+    "venue": "Old Trafford",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878752",
+    "homeTeam": "Ipswich Town",
+    "awayTeam": "Aston Villa",
+    "kickoff": "2026-11-28T17:30Z",
+    "venue": "Portman Road",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879229",
+    "homeTeam": "Everton",
+    "awayTeam": "Liverpool",
+    "kickoff": "2026-11-29T12:00Z",
+    "venue": "Hill Dickinson Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879231",
+    "homeTeam": "Brighton & Hove Albion",
+    "awayTeam": "Newcastle United",
+    "kickoff": "2026-11-29T14:05Z",
+    "venue": "American Express Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879230",
+    "homeTeam": "Crystal Palace",
+    "awayTeam": "Hull City",
+    "kickoff": "2026-11-29T14:05Z",
+    "venue": "Selhurst Park",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879228",
+    "homeTeam": "Fulham",
+    "awayTeam": "AFC Bournemouth",
+    "kickoff": "2026-11-29T14:05Z",
+    "venue": "Craven Cottage",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879224",
+    "homeTeam": "Sunderland",
+    "awayTeam": "Tottenham Hotspur",
+    "kickoff": "2026-11-29T14:05Z",
+    "venue": "Stadium of Light",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878753",
+    "homeTeam": "Arsenal",
+    "awayTeam": "Manchester City",
+    "kickoff": "2026-11-29T16:30Z",
+    "venue": "Emirates Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879221",
+    "homeTeam": "Coventry City",
+    "awayTeam": "Ipswich Town",
+    "kickoff": "2026-12-01T20:00Z",
+    "venue": "Coventry Building Society Arena",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879222",
+    "homeTeam": "Chelsea",
+    "awayTeam": "Crystal Palace",
+    "kickoff": "2026-12-02T19:30Z",
+    "venue": "Stamford Bridge",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879220",
+    "homeTeam": "Hull City",
+    "awayTeam": "Nottingham Forest",
+    "kickoff": "2026-12-02T19:30Z",
+    "venue": "The MKM Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879219",
+    "homeTeam": "Liverpool",
+    "awayTeam": "Sunderland",
+    "kickoff": "2026-12-02T19:30Z",
+    "venue": "Anfield",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879218",
+    "homeTeam": "Manchester City",
+    "awayTeam": "Leeds United",
+    "kickoff": "2026-12-02T19:30Z",
+    "venue": "Etihad Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879223",
+    "homeTeam": "AFC Bournemouth",
+    "awayTeam": "Brighton & Hove Albion",
+    "kickoff": "2026-12-02T20:15Z",
+    "venue": "Vitality Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878751",
+    "homeTeam": "Aston Villa",
+    "awayTeam": "Everton",
+    "kickoff": "2026-12-02T20:15Z",
+    "venue": "Villa Park",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878750",
+    "homeTeam": "Brentford",
+    "awayTeam": "Arsenal",
+    "kickoff": "2026-12-02T20:15Z",
+    "venue": "Gtech Community Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401879217",
+    "homeTeam": "Newcastle United",
+    "awayTeam": "Manchester United",
+    "kickoff": "2026-12-02T20:15Z",
+    "venue": "St. James' Park",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  },
+  {
+    "id": "401878749",
+    "homeTeam": "Tottenham Hotspur",
+    "awayTeam": "Fulham",
+    "kickoff": "2026-12-03T20:00Z",
+    "venue": "Tottenham Hotspur Stadium",
+    "status": "SCHEDULED",
+    "homeScore": 0,
+    "awayScore": 0,
+    "result": null
+  }
+]
