@@ -5,10 +5,10 @@
     "awayTeam": "Fulham",
     "kickoff": "2026-11-21T12:30Z",
     "venue": "Etihad Stadium",
-    "status": "SCHEDULED",
-    "homeScore": 0,
-    "awayScore": 0,
-    "result": null
+    "status": "FINISHED",
+    "homeScore": 1,
+    "awayScore": 1,
+    "result": "DRAW"
   },
   {
     "id": "401879238",
@@ -16,8 +16,8 @@
     "awayTeam": "Nottingham Forest",
     "kickoff": "2026-11-21T15:00Z",
     "venue": "Vitality Stadium",
-    "status": "SCHEDULED",
-    "homeScore": 0,
+    "status": "LIVE",
+    "homeScore": 1,
     "awayScore": 0,
     "result": null
   },
@@ -27,7 +27,7 @@
     "awayTeam": "Sunderland",
     "kickoff": "2026-11-21T15:00Z",
     "venue": "Villa Park",
-    "status": "SCHEDULED",
+    "status": "LIVE",
     "homeScore": 0,
     "awayScore": 0,
     "result": null
@@ -38,9 +38,9 @@
     "awayTeam": "Leeds United",
     "kickoff": "2026-11-21T15:00Z",
     "venue": "Stamford Bridge",
-    "status": "SCHEDULED",
-    "homeScore": 0,
-    "awayScore": 0,
+    "status": "LIVE",
+    "homeScore": 1,
+    "awayScore": 1,
     "result": null
   },
   {
@@ -49,9 +49,9 @@
     "awayTeam": "Crystal Palace",
     "kickoff": "2026-11-21T15:00Z",
     "venue": "Coventry Building Society Arena",
-    "status": "SCHEDULED",
-    "homeScore": 0,
-    "awayScore": 0,
+    "status": "LIVE",
+    "homeScore": 2,
+    "awayScore": 1,
     "result": null
   },
   {
@@ -60,8 +60,8 @@
     "awayTeam": "Ipswich Town",
     "kickoff": "2026-11-21T15:00Z",
     "venue": "Tottenham Hotspur Stadium",
-    "status": "SCHEDULED",
-    "homeScore": 0,
+    "status": "LIVE",
+    "homeScore": 1,
     "awayScore": 0,
     "result": null
   },
